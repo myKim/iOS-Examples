@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class MainViewController: UIViewController {
     
     // MARK: - Constants
     static let appTitle = "Timers"
@@ -25,6 +25,17 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewDidLoad()
         self.setupViewController()
     }
+    
+    //MARK: - Private Methods
+    func setupViewController() {
+        self.tableView.dataSource = self;
+        self.tableView.delegate = self;
+        
+        self.navigationItem.title = MainViewController.appTitle
+    }
+}
+
+extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     
     //MARK: - UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -53,13 +64,4 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             return
         }
     }
-    
-    //MARK: - Private Methods
-    func setupViewController() {
-        self.tableView.dataSource = self;
-        self.tableView.delegate = self;
-        
-        self.navigationItem.title = MainViewController.appTitle
-    }
 }
-
