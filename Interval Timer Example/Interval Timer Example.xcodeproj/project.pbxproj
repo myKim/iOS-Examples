@@ -13,7 +13,9 @@
 		B9188AD12377DA5600EDFCEE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9188ACF2377DA5600EDFCEE /* Main.storyboard */; };
 		B9188AD32377DA5800EDFCEE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9188AD22377DA5800EDFCEE /* Assets.xcassets */; };
 		B9188AD62377DA5800EDFCEE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9188AD42377DA5800EDFCEE /* LaunchScreen.storyboard */; };
-		B9188ADE2377E86A00EDFCEE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9188ADD2377E86A00EDFCEE /* ViewController.swift */; };
+		B9188ADE2377E86A00EDFCEE /* StandardTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9188ADD2377E86A00EDFCEE /* StandardTimerViewController.swift */; };
+		B9188AE22377F12200EDFCEE /* TimerUsingRxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9188AE12377F12200EDFCEE /* TimerUsingRxViewController.swift */; };
+		B9188AE42377F12F00EDFCEE /* IntervalTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9188AE32377F12F00EDFCEE /* IntervalTimerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +27,9 @@
 		B9188AD22377DA5800EDFCEE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B9188AD52377DA5800EDFCEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B9188AD72377DA5800EDFCEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B9188ADD2377E86A00EDFCEE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B9188ADD2377E86A00EDFCEE /* StandardTimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardTimerViewController.swift; sourceTree = "<group>"; };
+		B9188AE12377F12200EDFCEE /* TimerUsingRxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerUsingRxViewController.swift; sourceTree = "<group>"; };
+		B9188AE32377F12F00EDFCEE /* IntervalTimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntervalTimerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,12 +63,12 @@
 			isa = PBXGroup;
 			children = (
 				B9188AE02377E8AE00EDFCEE /* common */,
+				B9188AE52377F33E00EDFCEE /* ViewControllers */,
 				B9188AC92377DA5600EDFCEE /* AppDelegate.swift */,
 				B9188ACB2377DA5600EDFCEE /* SceneDelegate.swift */,
 				B9188ACD2377DA5600EDFCEE /* MainViewController.swift */,
 				B9188ACF2377DA5600EDFCEE /* Main.storyboard */,
 				B9188AD42377DA5800EDFCEE /* LaunchScreen.storyboard */,
-				B9188ADD2377E86A00EDFCEE /* ViewController.swift */,
 			);
 			path = "Interval Timer Example";
 			sourceTree = "<group>";
@@ -76,6 +80,16 @@
 				B9188AD72377DA5800EDFCEE /* Info.plist */,
 			);
 			path = common;
+			sourceTree = "<group>";
+		};
+		B9188AE52377F33E00EDFCEE /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				B9188ADD2377E86A00EDFCEE /* StandardTimerViewController.swift */,
+				B9188AE12377F12200EDFCEE /* TimerUsingRxViewController.swift */,
+				B9188AE32377F12F00EDFCEE /* IntervalTimerViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -151,8 +165,10 @@
 			files = (
 				B9188ACE2377DA5600EDFCEE /* MainViewController.swift in Sources */,
 				B9188ACA2377DA5600EDFCEE /* AppDelegate.swift in Sources */,
-				B9188ADE2377E86A00EDFCEE /* ViewController.swift in Sources */,
+				B9188ADE2377E86A00EDFCEE /* StandardTimerViewController.swift in Sources */,
 				B9188ACC2377DA5600EDFCEE /* SceneDelegate.swift in Sources */,
+				B9188AE22377F12200EDFCEE /* TimerUsingRxViewController.swift in Sources */,
+				B9188AE42377F12F00EDFCEE /* IntervalTimerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

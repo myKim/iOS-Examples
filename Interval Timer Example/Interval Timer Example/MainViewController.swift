@@ -10,9 +10,15 @@ import UIKit
 
 class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    // MARK: - Constants
+    static let appTitle = "Timers"
+    static let tagStandardTimer = "Standard Timer"
+    static let tagTimerUsingRx = "Timer using Rx"
+    static let tagIntervalTimer = "Interval Timer"
+    
     // MARK: - Properties
     @IBOutlet weak var tableView: UITableView!
-    let array: Array<String> = ["Timer", "Timer using Rx", "Interval Timer"]
+    let array: Array<String> = [tagStandardTimer, tagTimerUsingRx, tagIntervalTimer]
     
     // MARK: - Override Methods
     override func viewDidLoad() {
@@ -35,6 +41,17 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //MARK: - UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        switch array[indexPath.row] {
+        case MainViewController.tagStandardTimer:
+            self.performSegue(withIdentifier: "StandardTimerSegue", sender: self)
+        case MainViewController.tagTimerUsingRx:
+            self.performSegue(withIdentifier: "TimerUsingRxSegue", sender: self)
+        case MainViewController.tagIntervalTimer:
+            self.performSegue(withIdentifier: "IntervalTimerSegue", sender: self)
+        default:
+            return
+        }
     }
     
     //MARK: - Private Methods
@@ -42,7 +59,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.tableView.dataSource = self;
         self.tableView.delegate = self;
         
-        self.navigationItem.title = "Timers"
+        self.navigationItem.title = MainViewController.appTitle
     }
 }
 

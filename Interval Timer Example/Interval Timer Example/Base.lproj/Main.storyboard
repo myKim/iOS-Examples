@@ -42,26 +42,62 @@
                     <navigationItem key="navigationItem" id="qyR-1z-CHN"/>
                     <connections>
                         <outlet property="tableView" destination="ZUH-DB-fQM" id="gZj-9x-z11"/>
+                        <segue destination="SZ4-bN-Hzg" kind="show" identifier="TimerUsingRxSegue" id="wbN-fJ-D77"/>
+                        <segue destination="MSL-z5-1cu" kind="show" identifier="IntervalTimerSegue" id="Pnp-29-ABV"/>
+                        <segue destination="eMl-wx-kMG" kind="show" identifier="StandardTimerSegue" id="Erj-h8-azc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="120.53571428571428"/>
         </scene>
-        <!--View Controller-->
+        <!--Interval Timer View Controller-->
+        <scene sceneID="7rU-Vh-VI3">
+            <objects>
+                <viewController id="MSL-z5-1cu" customClass="IntervalTimerViewController" customModule="Interval_Timer_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ltZ-xa-qgt">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="LGu-IT-5e4"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="iYV-QC-qbR"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I7I-LO-9Tz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2103" y="500"/>
+        </scene>
+        <!--Timer Using Rx View Controller-->
+        <scene sceneID="4dJ-jK-ltv">
+            <objects>
+                <viewController id="SZ4-bN-Hzg" customClass="TimerUsingRxViewController" customModule="Interval_Timer_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OKY-W3-YM9">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="0XI-F9-43l"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="dh6-aw-W3v"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lDx-Ad-Z74" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3074" y="121"/>
+        </scene>
+        <!--Standard Timer View Controller-->
         <scene sceneID="WhF-di-Sbq">
             <objects>
-                <viewController id="eMl-wx-kMG" sceneMemberID="viewController">
+                <viewController id="eMl-wx-kMG" customClass="StandardTimerViewController" customModule="Interval_Timer_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sfD-gA-Dkh">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="pmf-w6-KfR"/>
                     </view>
+                    <navigationItem key="navigationItem" id="ZcD-bE-Uj2"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hXl-DN-d0N" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2154" y="-139"/>
+            <point key="canvasLocation" x="2104" y="-272"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Kbh-Fr-XrW">

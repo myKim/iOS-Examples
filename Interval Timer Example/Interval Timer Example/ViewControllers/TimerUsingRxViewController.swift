@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  TimerUsingRxViewController.swift
 //  Interval Timer Example
 //
 //  Created by 김명유 on 2019/11/10.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class TimerUsingRxViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
