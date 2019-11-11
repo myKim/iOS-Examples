@@ -12,18 +12,26 @@ class MainViewController: UIViewController {
     
     // MARK: - Constants
     static let appTitle = "Timers"
+    static let tagStopWatch = "Stop Watch"
     static let tagStandardTimer = "Standard Timer"
     static let tagTimerUsingRx = "Timer using Rx"
     static let tagIntervalTimer = "Interval Timer"
     
     // MARK: - Properties
     @IBOutlet weak var tableView: UITableView!
-    let array: Array<String> = [tagStandardTimer, tagTimerUsingRx, tagIntervalTimer]
+    let array: Array<String> = [tagStopWatch, tagStandardTimer, tagTimerUsingRx, tagIntervalTimer]
     
     // MARK: - Override Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupViewController()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let viewController = segue.destination
+        if let index = tableView.indexPathForSelectedRow?.row {
+            viewController.navigationItem.title = array[index]
+        }
     }
     
     //MARK: - Private Methods
@@ -51,9 +59,9 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     
     //MARK: - UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
         switch array[indexPath.row] {
+        case MainViewController.tagStopWatch:
+            self.performSegue(withIdentifier: "StopWatchSegue", sender: self)
         case MainViewController.tagStandardTimer:
             self.performSegue(withIdentifier: "StandardTimerSegue", sender: self)
         case MainViewController.tagTimerUsingRx:
@@ -63,5 +71,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         default:
             return
         }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
