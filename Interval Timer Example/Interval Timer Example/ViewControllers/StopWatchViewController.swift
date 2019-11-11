@@ -27,7 +27,7 @@ class StopWatchViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var stopWatchState: StopWatchState = .stopped
-    var lapList: Array<String> = []
+    var lapList: Array<UInt> = []
     var timer = Timer()
     var time: UInt = 0
     
@@ -36,6 +36,8 @@ class StopWatchViewController: UIViewController {
     //MARK: - Override Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.delegate = self
+        tableView.dataSource = self
         changeButtonState(.stopped)
     }
     
@@ -45,56 +47,72 @@ class StopWatchViewController: UIViewController {
         case .stopped: // 비활성화 상태로 누를 수 없음
             break
         case .running: // 랩타임을 기록한다.
-            recordLap()
+            insertLap()
         case .paused: // 리셋시킨다. -> stopped
-            stopWatchState = .stopped
-            changeButtonState(.stopped)
-            
-            time = 0
-            timeLabel.text = stringFromTime(time)
+            reset()
         }
     }
     
     @IBAction func onClickStartStopButton(_ sender: UIButton) {
         switch stopWatchState {
         case .stopped: // 시작한다. -> running
-            stopWatchState = .running
-            changeButtonState(.running)
-            
-            timer = Timer.scheduledTimer(timeInterval: (0.001 * Double(timeInterval)),
-                                         target: self,
-                                         selector: #selector(StopWatchViewController.updateTimer),
-                                         userInfo: nil,
-                                         repeats: true)
-            RunLoop.current.add(timer, forMode: .common)
-            timer.tolerance = 0.1
+            insertLap()
+            run()
         case .running: // 포즈한다. -> puased
-            stopWatchState = .paused
-            changeButtonState(.paused)
-            
-            timer.invalidate()
+            pause()
         case .paused: // 재시작한다. -> running
-            stopWatchState = .running
-            changeButtonState(.running)
-            
-            timer = Timer.scheduledTimer(timeInterval: (0.001 * Double(timeInterval)),
-                                         target: self,
-                                         selector: #selector(StopWatchViewController.updateTimer),
-                                         userInfo: nil,
-                                         repeats: true)
-            RunLoop.current.add(timer, forMode: .common)
-            timer.tolerance = 0.1
+            run()
         }
     }
     
     //MARK: - Private Methods
     @objc private func updateTimer() {
         time += timeInterval
+        lapList[0] += timeInterval
+        
         timeLabel.text = stringFromTime(time)
+        
+        tableView.beginUpdates()
+        tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .none)
+        tableView.endUpdates()
     }
     
-    private func recordLap() {
+    private func insertLap() {
+        lapList.insert(0, at: 0)
+        self.tableView.beginUpdates()
+        self.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+        self.tableView.endUpdates()
+    }
+    
+    private func reset() {
+        stopWatchState = .stopped
+        changeButtonState(.stopped)
         
+        time = 0
+        timeLabel.text = stringFromTime(time)
+        
+        lapList.removeAll()
+        tableView.reloadData()
+    }
+    
+    private func pause() {
+        stopWatchState = .paused
+        changeButtonState(.paused)
+        
+        timer.invalidate()
+    }
+    
+    private func run() {
+        stopWatchState = .running
+        changeButtonState(.running)
+        
+        timer = Timer.scheduledTimer(timeInterval: (0.001 * Double(timeInterval)),
+                                     target: self,
+                                     selector: #selector(StopWatchViewController.updateTimer),
+                                     userInfo: nil,
+                                     repeats: true)
+        RunLoop.current.add(timer, forMode: .common)
+        timer.tolerance = 0.1
     }
     
     private func changeButtonState(_ state: StopWatchState) {
@@ -137,8 +155,10 @@ extension StopWatchViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.text = "랩 \(indexPath.row + 1)"
-        cell.detailTextLabel?.text = lapList[indexPath.row];
+        
+        cell.detailTextLabel?.font = UIFont.monospacedDigitSystemFont(ofSize: cell.detailTextLabel?.font.pointSize ?? 17, weight: .regular)
+        cell.textLabel?.text = "랩 \(lapList.count - indexPath.row)"
+        cell.detailTextLabel?.text = stringFromTime(lapList[indexPath.row]);
         
         return cell
     }
