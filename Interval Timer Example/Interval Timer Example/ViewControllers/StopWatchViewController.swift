@@ -28,9 +28,10 @@ class StopWatchViewController: UIViewController {
     
     var stopWatchState: StopWatchState = .stopped
     var lapList: Array<String> = []
-    
     var timer = Timer()
-    var (hours, minutes, seconds, fractions) = (0, 0, 0, 0)
+    var time: UInt = 0
+    
+    let timeInterval: UInt = 10 // millisec
     
     //MARK: - Override Methods
     override func viewDidLoad() {
@@ -49,11 +50,8 @@ class StopWatchViewController: UIViewController {
             stopWatchState = .stopped
             changeButtonState(.stopped)
             
-            hours = 0
-            minutes = 0
-            seconds = 0
-            fractions = 0
-            timeLabel.text = "00:00.00"
+            time = 0
+            timeLabel.text = stringFromTime(time)
         }
     }
     
@@ -63,7 +61,11 @@ class StopWatchViewController: UIViewController {
             stopWatchState = .running
             changeButtonState(.running)
             
-            timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(StopWatchViewController.updateTimer), userInfo: nil, repeats: true)
+            timer = Timer.scheduledTimer(timeInterval: (0.001 * Double(timeInterval)),
+                                         target: self,
+                                         selector: #selector(StopWatchViewController.updateTimer),
+                                         userInfo: nil,
+                                         repeats: true)
             RunLoop.current.add(timer, forMode: .common)
             timer.tolerance = 0.1
         case .running: // 포즈한다. -> puased
@@ -75,7 +77,11 @@ class StopWatchViewController: UIViewController {
             stopWatchState = .running
             changeButtonState(.running)
             
-            timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(StopWatchViewController.updateTimer), userInfo: nil, repeats: true)
+            timer = Timer.scheduledTimer(timeInterval: (0.001 * Double(timeInterval)),
+                                         target: self,
+                                         selector: #selector(StopWatchViewController.updateTimer),
+                                         userInfo: nil,
+                                         repeats: true)
             RunLoop.current.add(timer, forMode: .common)
             timer.tolerance = 0.1
         }
@@ -83,32 +89,8 @@ class StopWatchViewController: UIViewController {
     
     //MARK: - Private Methods
     @objc private func updateTimer() {
-        fractions += 1
-        if fractions >= 100 {
-            seconds += 1
-            fractions = 0
-        }
-        
-        if seconds >= 60 {
-            minutes += 1
-            seconds = 0
-        }
-        
-        if minutes >= 60 {
-            hours += 1
-            minutes = 0
-        }
-        
-        let hoursString = (hours > 9) ? "\(hours)" : "0\(hours)"
-        let hoursMinutes = (minutes > 9) ? "\(minutes)" : "0\(minutes)"
-        let hoursSeconds = (seconds > 9) ? "\(seconds)" : "0\(seconds)"
-        let hoursFractions = (fractions > 9) ? "\(fractions)" : "0\(fractions)"
-        
-        if hours > 0 {
-            timeLabel.text = "\(hoursString):\(hoursMinutes):\(hoursSeconds)"
-        } else {
-            timeLabel.text = "\(hoursMinutes):\(hoursSeconds).\(hoursFractions)"
-        }
+        time += timeInterval
+        timeLabel.text = stringFromTime(time)
     }
     
     private func recordLap() {
@@ -159,5 +141,34 @@ extension StopWatchViewController: UITableViewDataSource, UITableViewDelegate {
         cell.detailTextLabel?.text = lapList[indexPath.row];
         
         return cell
+    }
+}
+
+extension StopWatchViewController {
+    
+    //MARK: - Time convertor
+    private func stringFromTime(_ time: UInt) -> String? {
+        var result = "00:00.00"
+        var tempTime = time
+        
+        let milliseconds = tempTime % 1000
+        tempTime /= 1000
+        let fractions = milliseconds / 10
+        
+        let seconds = tempTime % 60
+        tempTime /= 60
+        
+        let minutes = tempTime % 60
+        tempTime /= 60
+        
+        let hours = tempTime % 60
+        
+        if hours > 0 {
+            result = String(format: "%02d:%02d:%02d", hours, minutes, seconds)
+        }
+        else {
+            result = String(format: "%02d:%02d.%02d", minutes, seconds, fractions)
+        }
+        return result
     }
 }
