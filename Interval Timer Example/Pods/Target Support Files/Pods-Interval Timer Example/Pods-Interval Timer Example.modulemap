@@ -1,0 +1,6 @@
+framework module Pods_Interval_Timer_Example {
+  umbrella header "Pods-Interval Timer Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		520CC3BAD4F3747AC7740EC7 /* Pods_Interval_Timer_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A8245A7CB5B2970BAEC473 /* Pods_Interval_Timer_Example.framework */; };
 		B9188ACA2377DA5600EDFCEE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9188AC92377DA5600EDFCEE /* AppDelegate.swift */; };
 		B9188ACC2377DA5600EDFCEE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9188ACB2377DA5600EDFCEE /* SceneDelegate.swift */; };
 		B9188ACE2377DA5600EDFCEE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9188ACD2377DA5600EDFCEE /* MainViewController.swift */; };
@@ -20,6 +21,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		520D3C13C5DE3EDD69AAC6E8 /* Pods-Interval Timer Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Interval Timer Example.release.xcconfig"; path = "Target Support Files/Pods-Interval Timer Example/Pods-Interval Timer Example.release.xcconfig"; sourceTree = "<group>"; };
+		91A8245A7CB5B2970BAEC473 /* Pods_Interval_Timer_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Interval_Timer_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2A0B0A47FBF4371F828E68A /* Pods-Interval Timer Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Interval Timer Example.debug.xcconfig"; path = "Target Support Files/Pods-Interval Timer Example/Pods-Interval Timer Example.debug.xcconfig"; sourceTree = "<group>"; };
 		B9188AC62377DA5600EDFCEE /* Interval Timer Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Interval Timer Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9188AC92377DA5600EDFCEE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B9188ACB2377DA5600EDFCEE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -39,17 +43,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				520CC3BAD4F3747AC7740EC7 /* Pods_Interval_Timer_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A07C358216413608703941AD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A2A0B0A47FBF4371F828E68A /* Pods-Interval Timer Example.debug.xcconfig */,
+				520D3C13C5DE3EDD69AAC6E8 /* Pods-Interval Timer Example.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		B0C6B9E750FC215B9A5BCCC4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				91A8245A7CB5B2970BAEC473 /* Pods_Interval_Timer_Example.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B9188ABD2377DA5500EDFCEE = {
 			isa = PBXGroup;
 			children = (
 				B9188AC82377DA5600EDFCEE /* Interval Timer Example */,
 				B9188AC72377DA5600EDFCEE /* Products */,
+				A07C358216413608703941AD /* Pods */,
+				B0C6B9E750FC215B9A5BCCC4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -102,9 +127,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B9188ADA2377DA5800EDFCEE /* Build configuration list for PBXNativeTarget "Interval Timer Example" */;
 			buildPhases = (
+				9B35FC5AB262DFEBF68C9068 /* [CP] Check Pods Manifest.lock */,
 				B9188AC22377DA5600EDFCEE /* Sources */,
 				B9188AC32377DA5600EDFCEE /* Frameworks */,
 				B9188AC42377DA5600EDFCEE /* Resources */,
+				6F32C2289773A2B0A835DDC4 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -160,6 +187,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6F32C2289773A2B0A835DDC4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Interval Timer Example/Pods-Interval Timer Example-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Interval Timer Example/Pods-Interval Timer Example-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Interval Timer Example/Pods-Interval Timer Example-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9B35FC5AB262DFEBF68C9068 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Interval Timer Example-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B9188AC22377DA5600EDFCEE /* Sources */ = {
@@ -314,6 +383,7 @@
 		};
 		B9188ADB2377DA5800EDFCEE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A2A0B0A47FBF4371F828E68A /* Pods-Interval Timer Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -334,6 +404,7 @@
 		};
 		B9188ADC2377DA5800EDFCEE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 520D3C13C5DE3EDD69AAC6E8 /* Pods-Interval Timer Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
