@@ -8,13 +8,13 @@
 
 import UIKit
 
-enum StopWatchState: Int {
+enum StopwatchState: Int {
     case stopped = 0
     case running
     case paused
 }
 
-class StopWatchViewController: UIViewController {
+class StopwatchViewController: UIViewController {
 
     //MARK: - Properties
     @IBOutlet weak var timeLabel: UILabel! {
@@ -26,10 +26,10 @@ class StopWatchViewController: UIViewController {
     @IBOutlet weak var startStopButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
-    var stopWatchState: StopWatchState = .stopped
-    var lapList: Array<UInt> = []
+    var stopwatchState: StopwatchState = .stopped
     var timer = Timer()
-    var time: UInt = 0
+    var lapList: Array<StopwatchTime> = []
+    var stopwatchTime: StopwatchTime = StopwatchTime(time: 0)
     
     let timeInterval: UInt = 10 // millisec
     
@@ -43,7 +43,7 @@ class StopWatchViewController: UIViewController {
     
     //MARK: - IBAction
     @IBAction func onClickLapResetButton(_ sender: UIButton) {
-        switch stopWatchState {
+        switch stopwatchState {
         case .stopped: // 비활성화 상태로 누를 수 없음
             break
         case .running: // 랩타임을 기록한다.
@@ -54,7 +54,7 @@ class StopWatchViewController: UIViewController {
     }
     
     @IBAction func onClickStartStopButton(_ sender: UIButton) {
-        switch stopWatchState {
+        switch stopwatchState {
         case .stopped: // 시작한다. -> running
             insertLap()
             run()
@@ -67,47 +67,47 @@ class StopWatchViewController: UIViewController {
     
     //MARK: - Private Methods
     @objc private func updateTimer() {
-        time += timeInterval
-        lapList[0] += timeInterval
+        stopwatchTime.time += timeInterval
+        lapList[0].time += timeInterval
         
-        timeLabel.text = stringFromTime(time)
+        timeLabel.text = stopwatchTime.timeString
         
         let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0))
-        cell?.detailTextLabel?.text = stringFromTime(lapList[0]);
+        cell?.detailTextLabel?.text = lapList[0].timeString;
     }
     
     private func insertLap() {
-        lapList.insert(0, at: 0)
+        lapList.insert(StopwatchTime(time: 0), at: 0)
         self.tableView.beginUpdates()
         self.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
         self.tableView.endUpdates()
     }
     
     private func reset() {
-        stopWatchState = .stopped
+        stopwatchState = .stopped
         changeButtonState(.stopped)
         
-        time = 0
-        timeLabel.text = stringFromTime(time)
+        stopwatchTime.time = 0
+        timeLabel.text = stopwatchTime.timeString
         
         lapList.removeAll()
         tableView.reloadData()
     }
     
     private func pause() {
-        stopWatchState = .paused
+        stopwatchState = .paused
         changeButtonState(.paused)
         
         timer.invalidate()
     }
     
     private func run() {
-        stopWatchState = .running
+        stopwatchState = .running
         changeButtonState(.running)
 
         timer = Timer.init(timeInterval: (0.001 * Double(timeInterval)),
                            target: self,
-                           selector: #selector(StopWatchViewController.updateTimer),
+                           selector: #selector(StopwatchViewController.updateTimer),
                            userInfo: nil,
                            repeats: true)
 
@@ -115,7 +115,7 @@ class StopWatchViewController: UIViewController {
         timer.tolerance = 0.1
     }
     
-    private func changeButtonState(_ state: StopWatchState) {
+    private func changeButtonState(_ state: StopwatchState) {
         switch state {
         case .stopped:
             lapResetButton.isEnabled = false
@@ -146,7 +146,7 @@ class StopWatchViewController: UIViewController {
     }
 }
 
-extension StopWatchViewController: UITableViewDataSource, UITableViewDelegate {
+extension StopwatchViewController: UITableViewDataSource, UITableViewDelegate {
     
     //MARK: - UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -158,37 +158,8 @@ extension StopWatchViewController: UITableViewDataSource, UITableViewDelegate {
         
         cell.detailTextLabel?.font = UIFont.monospacedDigitSystemFont(ofSize: cell.detailTextLabel?.font.pointSize ?? 17, weight: .regular)
         cell.textLabel?.text = "랩 \(lapList.count - indexPath.row)"
-        cell.detailTextLabel?.text = stringFromTime(lapList[indexPath.row]);
+        cell.detailTextLabel?.text = lapList[indexPath.row].timeString;
         
         return cell
-    }
-}
-
-extension StopWatchViewController {
-    
-    //MARK: - Time convertor
-    private func stringFromTime(_ time: UInt) -> String? {
-        var result = "00:00.00"
-        var tempTime = time
-        
-        let milliseconds = tempTime % 1000
-        tempTime /= 1000
-        let fractions = milliseconds / 10
-        
-        let seconds = tempTime % 60
-        tempTime /= 60
-        
-        let minutes = tempTime % 60
-        tempTime /= 60
-        
-        let hours = tempTime % 60
-        
-        if hours > 0 {
-            result = String(format: "%02d:%02d:%02d", hours, minutes, seconds)
-        }
-        else {
-            result = String(format: "%02d:%02d.%02d", minutes, seconds, fractions)
-        }
-        return result
     }
 }

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,7 +17,9 @@
 		B9188ADE2377E86A00EDFCEE /* StandardTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9188ADD2377E86A00EDFCEE /* StandardTimerViewController.swift */; };
 		B9188AE22377F12200EDFCEE /* TimerUsingRxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9188AE12377F12200EDFCEE /* TimerUsingRxViewController.swift */; };
 		B9188AE42377F12F00EDFCEE /* IntervalTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9188AE32377F12F00EDFCEE /* IntervalTimerViewController.swift */; };
-		B9188AE72377FF6800EDFCEE /* StopWatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9188AE62377FF6800EDFCEE /* StopWatchViewController.swift */; };
+		B9188AE72377FF6800EDFCEE /* StopwatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9188AE62377FF6800EDFCEE /* StopwatchViewController.swift */; };
+		B97E5B2B238AA2F4003FBD7E /* StopwatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97E5B2A238AA2F4003FBD7E /* StopwatchViewModel.swift */; };
+		B97E5B2D238AAD45003FBD7E /* StopwatchTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = B97E5B2C238AAD45003FBD7E /* StopwatchTime.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,7 +37,9 @@
 		B9188ADD2377E86A00EDFCEE /* StandardTimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardTimerViewController.swift; sourceTree = "<group>"; };
 		B9188AE12377F12200EDFCEE /* TimerUsingRxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerUsingRxViewController.swift; sourceTree = "<group>"; };
 		B9188AE32377F12F00EDFCEE /* IntervalTimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntervalTimerViewController.swift; sourceTree = "<group>"; };
-		B9188AE62377FF6800EDFCEE /* StopWatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatchViewController.swift; sourceTree = "<group>"; };
+		B9188AE62377FF6800EDFCEE /* StopwatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchViewController.swift; sourceTree = "<group>"; };
+		B97E5B2A238AA2F4003FBD7E /* StopwatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchViewModel.swift; sourceTree = "<group>"; };
+		B97E5B2C238AAD45003FBD7E /* StopwatchTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchTime.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,7 +60,6 @@
 				A2A0B0A47FBF4371F828E68A /* Pods-Interval Timer Example.debug.xcconfig */,
 				520D3C13C5DE3EDD69AAC6E8 /* Pods-Interval Timer Example.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -89,7 +92,8 @@
 		B9188AC82377DA5600EDFCEE /* Interval Timer Example */ = {
 			isa = PBXGroup;
 			children = (
-				B9188AE02377E8AE00EDFCEE /* common */,
+				B9188AE02377E8AE00EDFCEE /* Supporting Files */,
+				B97E5B24238AA0CD003FBD7E /* Stopwatch */,
 				B9188AE52377F33E00EDFCEE /* ViewControllers */,
 				B9188AC92377DA5600EDFCEE /* AppDelegate.swift */,
 				B9188ACB2377DA5600EDFCEE /* SceneDelegate.swift */,
@@ -100,24 +104,57 @@
 			path = "Interval Timer Example";
 			sourceTree = "<group>";
 		};
-		B9188AE02377E8AE00EDFCEE /* common */ = {
+		B9188AE02377E8AE00EDFCEE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
 				B9188AD22377DA5800EDFCEE /* Assets.xcassets */,
 				B9188AD72377DA5800EDFCEE /* Info.plist */,
 			);
-			path = common;
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		B9188AE52377F33E00EDFCEE /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				B9188AE62377FF6800EDFCEE /* StopWatchViewController.swift */,
 				B9188ADD2377E86A00EDFCEE /* StandardTimerViewController.swift */,
 				B9188AE12377F12200EDFCEE /* TimerUsingRxViewController.swift */,
 				B9188AE32377F12F00EDFCEE /* IntervalTimerViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		B97E5B24238AA0CD003FBD7E /* Stopwatch */ = {
+			isa = PBXGroup;
+			children = (
+				B97E5B25238AA0FF003FBD7E /* View */,
+				B97E5B27238AA123003FBD7E /* Model */,
+				B97E5B26238AA10E003FBD7E /* ViewModel */,
+			);
+			path = Stopwatch;
+			sourceTree = "<group>";
+		};
+		B97E5B25238AA0FF003FBD7E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B9188AE62377FF6800EDFCEE /* StopwatchViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B97E5B26238AA10E003FBD7E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B97E5B2A238AA2F4003FBD7E /* StopwatchViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		B97E5B27238AA123003FBD7E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B97E5B2C238AAD45003FBD7E /* StopwatchTime.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,12 +272,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B97E5B2D238AAD45003FBD7E /* StopwatchTime.swift in Sources */,
 				B9188ACE2377DA5600EDFCEE /* MainViewController.swift in Sources */,
 				B9188ACA2377DA5600EDFCEE /* AppDelegate.swift in Sources */,
 				B9188ADE2377E86A00EDFCEE /* StandardTimerViewController.swift in Sources */,
 				B9188ACC2377DA5600EDFCEE /* SceneDelegate.swift in Sources */,
+				B97E5B2B238AA2F4003FBD7E /* StopwatchViewModel.swift in Sources */,
 				B9188AE22377F12200EDFCEE /* TimerUsingRxViewController.swift in Sources */,
-				B9188AE72377FF6800EDFCEE /* StopWatchViewController.swift in Sources */,
+				B9188AE72377FF6800EDFCEE /* StopwatchViewController.swift in Sources */,
 				B9188AE42377F12F00EDFCEE /* IntervalTimerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -389,7 +428,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2XZPR2378T;
-				INFOPLIST_FILE = "Interval Timer Example/common/Info.plist";
+				INFOPLIST_FILE = "Interval Timer Example/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -410,7 +449,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2XZPR2378T;
-				INFOPLIST_FILE = "Interval Timer Example/common/Info.plist";
+				INFOPLIST_FILE = "Interval Timer Example/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

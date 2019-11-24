@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Imi-IW-JcW">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -84,10 +84,10 @@
             </objects>
             <point key="canvasLocation" x="3074" y="121"/>
         </scene>
-        <!--Stop Watch View Controller-->
+        <!--Stopwatch View Controller-->
         <scene sceneID="i8h-FE-I9i">
             <objects>
-                <viewController id="DA2-R5-jSV" customClass="StopWatchViewController" customModule="Interval_Timer_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="DA2-R5-jSV" customClass="StopwatchViewController" customModule="Interval_Timer_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tpx-QD-eiB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
