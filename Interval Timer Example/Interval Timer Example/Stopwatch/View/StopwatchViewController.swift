@@ -13,8 +13,6 @@ class StopwatchViewController: UIViewController {
     //MARK: - Properties
     
     var viewModel: StopwatchViewModel = StopwatchViewModel()
-    var timer = Timer()
-    let timeInterval: UInt = 10 // millisec
     
     //MARK: IBOutlet
     
@@ -34,6 +32,8 @@ class StopwatchViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         changeButtonState(.stopped)
+        
+        viewModel.delegate = self
     }
     
     //MARK: - IBAction
@@ -43,74 +43,25 @@ class StopwatchViewController: UIViewController {
         case .stopped: // 비활성화 상태로 누를 수 없음
             break
         case .running: // 랩타임을 기록한다.
-            insertLap()
+            viewModel.insertLap()
         case .paused: // 리셋시킨다. -> stopped
-            reset()
+            viewModel.reset()
         }
     }
     
     @IBAction func onClickStartStopButton(_ sender: UIButton) {
         switch viewModel.stopwatchState {
         case .stopped: // 시작한다. -> running
-            insertLap()
-            run()
+            viewModel.insertLap()
+            viewModel.run()
         case .running: // 포즈한다. -> puased
-            pause()
+            viewModel.pause()
         case .paused: // 재시작한다. -> running
-            run()
+            viewModel.run()
         }
     }
     
     //MARK: - Private Methods
-    
-    @objc private func updateTimer() {
-        viewModel.stopwatchTime.time += timeInterval
-        viewModel.lapList[0].time += timeInterval
-        
-        timeLabel.text = viewModel.stopwatchTime.timeString
-        
-        let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0))
-        cell?.detailTextLabel?.text = viewModel.lapList[0].timeString;
-    }
-    
-    private func insertLap() {
-        viewModel.lapList.insert(StopwatchTime(time: 0), at: 0)
-        self.tableView.beginUpdates()
-        self.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
-        self.tableView.endUpdates()
-    }
-    
-    private func reset() {
-        viewModel.stopwatchState = .stopped
-        changeButtonState(.stopped)
-        
-        viewModel.stopwatchTime.time = 0
-        timeLabel.text = viewModel.stopwatchTime.timeString
-        
-        viewModel.lapList.removeAll()
-        tableView.reloadData()
-    }
-    
-    private func pause() {
-        viewModel.stopwatchState = .paused
-        changeButtonState(.paused)
-        
-        timer.invalidate()
-    }
-    
-    private func run() {
-        viewModel.stopwatchState = .running
-        changeButtonState(.running)
-
-        timer = Timer.init(timeInterval: (0.001 * Double(timeInterval)),
-                           target: self,
-                           selector: #selector(StopwatchViewController.updateTimer),
-                           userInfo: nil,
-                           repeats: true)
-
-        RunLoop.current.add(timer, forMode: .common)
-        timer.tolerance = 0.1
-    }
     
     private func changeButtonState(_ state: StopwatchState) {
         switch state {
@@ -159,5 +110,37 @@ extension StopwatchViewController: UITableViewDataSource, UITableViewDelegate {
         cell.detailTextLabel?.text = viewModel.lapList[indexPath.row].timeString;
         
         return cell
+    }
+}
+
+extension StopwatchViewController: StopwatchViewModelDelegate {
+    
+    //MARK: - StopwatchViewModelDelegate
+    
+    func didUpdateTimer(mainTimeString: String?, lapTimeString: String?) {
+        timeLabel.text = mainTimeString
+        
+        let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0))
+        cell?.detailTextLabel?.text = lapTimeString
+    }
+    
+    func didInsertLap(at indexPath: IndexPath?) {
+        self.tableView.beginUpdates()
+        self.tableView.insertRows(at: [indexPath!], with: .automatic)
+        self.tableView.endUpdates()
+    }
+    
+    func didReset(state: StopwatchState, mainTimeString: String?) {
+        changeButtonState(state)
+        timeLabel.text = mainTimeString
+        tableView.reloadData()
+    }
+    
+    func didPause(state: StopwatchState) {
+        changeButtonState(state)
+    }
+    
+    func didRun(state: StopwatchState) {
+        changeButtonState(state)
     }
 }
