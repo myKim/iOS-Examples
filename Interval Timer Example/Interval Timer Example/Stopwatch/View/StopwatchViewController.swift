@@ -8,15 +8,16 @@
 
 import UIKit
 
-enum StopwatchState: Int {
-    case stopped = 0
-    case running
-    case paused
-}
-
 class StopwatchViewController: UIViewController {
 
     //MARK: - Properties
+    
+    var viewModel: StopwatchViewModel = StopwatchViewModel()
+    var timer = Timer()
+    let timeInterval: UInt = 10 // millisec
+    
+    //MARK: IBOutlet
+    
     @IBOutlet weak var timeLabel: UILabel! {
         didSet {
             timeLabel.font = UIFont.monospacedDigitSystemFont(ofSize: timeLabel.font.pointSize, weight: .thin)
@@ -26,14 +27,8 @@ class StopwatchViewController: UIViewController {
     @IBOutlet weak var startStopButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
-    var stopwatchState: StopwatchState = .stopped
-    var timer = Timer()
-    var lapList: Array<StopwatchTime> = []
-    var stopwatchTime: StopwatchTime = StopwatchTime(time: 0)
-    
-    let timeInterval: UInt = 10 // millisec
-    
     //MARK: - Override Methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -42,8 +37,9 @@ class StopwatchViewController: UIViewController {
     }
     
     //MARK: - IBAction
+    
     @IBAction func onClickLapResetButton(_ sender: UIButton) {
-        switch stopwatchState {
+        switch viewModel.stopwatchState {
         case .stopped: // 비활성화 상태로 누를 수 없음
             break
         case .running: // 랩타임을 기록한다.
@@ -54,7 +50,7 @@ class StopwatchViewController: UIViewController {
     }
     
     @IBAction func onClickStartStopButton(_ sender: UIButton) {
-        switch stopwatchState {
+        switch viewModel.stopwatchState {
         case .stopped: // 시작한다. -> running
             insertLap()
             run()
@@ -66,43 +62,44 @@ class StopwatchViewController: UIViewController {
     }
     
     //MARK: - Private Methods
+    
     @objc private func updateTimer() {
-        stopwatchTime.time += timeInterval
-        lapList[0].time += timeInterval
+        viewModel.stopwatchTime.time += timeInterval
+        viewModel.lapList[0].time += timeInterval
         
-        timeLabel.text = stopwatchTime.timeString
+        timeLabel.text = viewModel.stopwatchTime.timeString
         
         let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0))
-        cell?.detailTextLabel?.text = lapList[0].timeString;
+        cell?.detailTextLabel?.text = viewModel.lapList[0].timeString;
     }
     
     private func insertLap() {
-        lapList.insert(StopwatchTime(time: 0), at: 0)
+        viewModel.lapList.insert(StopwatchTime(time: 0), at: 0)
         self.tableView.beginUpdates()
         self.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
         self.tableView.endUpdates()
     }
     
     private func reset() {
-        stopwatchState = .stopped
+        viewModel.stopwatchState = .stopped
         changeButtonState(.stopped)
         
-        stopwatchTime.time = 0
-        timeLabel.text = stopwatchTime.timeString
+        viewModel.stopwatchTime.time = 0
+        timeLabel.text = viewModel.stopwatchTime.timeString
         
-        lapList.removeAll()
+        viewModel.lapList.removeAll()
         tableView.reloadData()
     }
     
     private func pause() {
-        stopwatchState = .paused
+        viewModel.stopwatchState = .paused
         changeButtonState(.paused)
         
         timer.invalidate()
     }
     
     private func run() {
-        stopwatchState = .running
+        viewModel.stopwatchState = .running
         changeButtonState(.running)
 
         timer = Timer.init(timeInterval: (0.001 * Double(timeInterval)),
@@ -149,16 +146,17 @@ class StopwatchViewController: UIViewController {
 extension StopwatchViewController: UITableViewDataSource, UITableViewDelegate {
     
     //MARK: - UITableViewDataSource
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return lapList.count
+        return viewModel.lapList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
         cell.detailTextLabel?.font = UIFont.monospacedDigitSystemFont(ofSize: cell.detailTextLabel?.font.pointSize ?? 17, weight: .regular)
-        cell.textLabel?.text = "랩 \(lapList.count - indexPath.row)"
-        cell.detailTextLabel?.text = lapList[indexPath.row].timeString;
+        cell.textLabel?.text = "랩 \(viewModel.lapList.count - indexPath.row)"
+        cell.detailTextLabel?.text = viewModel.lapList[indexPath.row].timeString;
         
         return cell
     }
