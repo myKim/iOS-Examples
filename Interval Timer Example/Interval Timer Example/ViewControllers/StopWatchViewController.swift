@@ -72,9 +72,8 @@ class StopWatchViewController: UIViewController {
         
         timeLabel.text = stringFromTime(time)
         
-        tableView.beginUpdates()
-        tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .none)
-        tableView.endUpdates()
+        let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0))
+        cell?.detailTextLabel?.text = stringFromTime(lapList[0]);
     }
     
     private func insertLap() {
@@ -105,12 +104,13 @@ class StopWatchViewController: UIViewController {
     private func run() {
         stopWatchState = .running
         changeButtonState(.running)
-        
-        timer = Timer.scheduledTimer(timeInterval: (0.001 * Double(timeInterval)),
-                                     target: self,
-                                     selector: #selector(StopWatchViewController.updateTimer),
-                                     userInfo: nil,
-                                     repeats: true)
+
+        timer = Timer.init(timeInterval: (0.001 * Double(timeInterval)),
+                           target: self,
+                           selector: #selector(StopWatchViewController.updateTimer),
+                           userInfo: nil,
+                           repeats: true)
+
         RunLoop.current.add(timer, forMode: .common)
         timer.tolerance = 0.1
     }
