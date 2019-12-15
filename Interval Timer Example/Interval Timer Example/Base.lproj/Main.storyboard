@@ -115,9 +115,6 @@
                                 <state key="normal" title="랩" backgroundImage="largecircle.fill.circle" catalog="system">
                                     <color key="titleColor" red="0.99997824430000004" green="0.99606853719999999" blue="0.99607902770000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
-                                <connections>
-                                    <action selector="onClickLapResetButton:" destination="DA2-R5-jSV" eventType="touchUpInside" id="4td-S3-ZYL"/>
-                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="atX-vt-njt">
                                 <rect key="frame" x="0.0" y="467" width="375" height="200"/>
@@ -163,9 +160,6 @@
                                 <state key="normal" title="시작" backgroundImage="largecircle.fill.circle" catalog="system">
                                     <color key="titleColor" red="0.4078463316" green="0.8051272035" blue="0.40384244920000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
-                                <connections>
-                                    <action selector="onClickStartStopButton:" destination="DA2-R5-jSV" eventType="touchUpInside" id="AU1-sP-YjR"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
