@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import RxCocoa
+import RxSwift
 
 enum StopwatchState: Int {
     case stopped = 0
@@ -15,24 +17,21 @@ enum StopwatchState: Int {
 }
 
 protocol StopwatchViewModelDelegate {
+    
     func didUpdateTimer(mainTimeString: String?, lapTimeString: String?)
     func didInsertLap(at indexPath: IndexPath?)
     func didReset(state: StopwatchState, mainTimeString: String?)
-    func didPause(state: StopwatchState)
-    func didRun(state: StopwatchState)
 }
 
 class StopwatchViewModel {
     
     //MARK: - Constants
-    
     let timeInterval: UInt = 10 // millisec
     
     //MARK: - Properties
-    
     var lapList: Array<StopwatchTime> = []
     var stopwatchTime: StopwatchTime = StopwatchTime(time: 0)
-    var stopwatchState: StopwatchState = .stopped
+    var stopwatchState = BehaviorRelay<StopwatchState>(value: .stopped)
     var timer = Timer()
     
     var delegate: StopwatchViewModelDelegate?
@@ -41,7 +40,6 @@ class StopwatchViewModel {
 extension StopwatchViewModel {
     
     //MARK: - Private Methods
-    
     @objc private func updateTimer() {
         stopwatchTime.time += timeInterval
         lapList[0].time += timeInterval
@@ -50,7 +48,6 @@ extension StopwatchViewModel {
     }
     
     //MARK: - Public Methods
-    
     public func insertLap() {
         lapList.insert(StopwatchTime(time: 0), at: 0)
         
@@ -60,22 +57,18 @@ extension StopwatchViewModel {
     public func reset() {
         stopwatchTime.time = 0
         lapList.removeAll()
-        stopwatchState = .stopped
+        stopwatchState.accept(.stopped)
         
-        delegate?.didReset(state: stopwatchState, mainTimeString: stopwatchTime.timeString)
+        delegate?.didReset(state: stopwatchState.value, mainTimeString: stopwatchTime.timeString)
     }
     
     public func pause() {
         timer.invalidate()
-        stopwatchState = .paused
-        
-        delegate?.didPause(state: stopwatchState)
+        stopwatchState.accept(.paused)
     }
     
     public func run() {
-        stopwatchState = .running
-        
-        delegate?.didRun(state: stopwatchState)
+        stopwatchState.accept(.running)
 
         timer = Timer.init(timeInterval: (0.001 * Double(timeInterval)),
                            target: self,

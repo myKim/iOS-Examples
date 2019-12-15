@@ -7,15 +7,16 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 class StopwatchViewController: UIViewController {
 
     //MARK: - Properties
-    
-    var viewModel: StopwatchViewModel = StopwatchViewModel()
+    let viewModel = StopwatchViewModel()
+    let disposeBag = DisposeBag()
     
     //MARK: IBOutlet
-    
     @IBOutlet weak var timeLabel: UILabel! {
         didSet {
             timeLabel.font = UIFont.monospacedDigitSystemFont(ofSize: timeLabel.font.pointSize, weight: .thin)
@@ -25,21 +26,21 @@ class StopwatchViewController: UIViewController {
     @IBOutlet weak var startStopButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
-    //MARK: - Override Methods
-    
+    //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        changeButtonState(.stopped)
+        updateButtonState(.stopped)
         
         viewModel.delegate = self
+        
+        setupViewModel()
     }
     
-    //MARK: - IBAction
-    
-    @IBAction func onClickLapResetButton(_ sender: UIButton) {
-        switch viewModel.stopwatchState {
+    //MARK: - onClick Event
+    private func onClickLapResetButton(_ sender: UIButton) {
+        switch viewModel.stopwatchState.value {
         case .stopped: // 비활성화 상태로 누를 수 없음
             break
         case .running: // 랩타임을 기록한다.
@@ -49,8 +50,8 @@ class StopwatchViewController: UIViewController {
         }
     }
     
-    @IBAction func onClickStartStopButton(_ sender: UIButton) {
-        switch viewModel.stopwatchState {
+    private func onClickStartStopButton(_ sender: UIButton) {
+        switch viewModel.stopwatchState.value {
         case .stopped: // 시작한다. -> running
             viewModel.insertLap()
             viewModel.run()
@@ -62,8 +63,23 @@ class StopwatchViewController: UIViewController {
     }
     
     //MARK: - Private Methods
+    private func setupViewModel() {
+        // Event Handling
+        lapResetButton.rx.tap
+            .subscribe(onNext: { [weak self] in self?.onClickLapResetButton(self!.lapResetButton) })
+            .disposed(by: disposeBag)
+        
+        startStopButton.rx.tap
+            .subscribe(onNext: { [weak self] in self?.onClickStartStopButton(self!.startStopButton) })
+            .disposed(by: disposeBag)
+        
+        // for Stopwatch state change
+        viewModel.stopwatchState
+            .subscribe(onNext: { [weak self] stopwatchState in self?.updateButtonState(stopwatchState) })
+            .disposed(by: disposeBag)
+    }
     
-    private func changeButtonState(_ state: StopwatchState) {
+    private func updateButtonState(_ state: StopwatchState) {
         switch state {
         case .stopped:
             lapResetButton.isEnabled = false
@@ -97,7 +113,6 @@ class StopwatchViewController: UIViewController {
 extension StopwatchViewController: UITableViewDataSource, UITableViewDelegate {
     
     //MARK: - UITableViewDataSource
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.lapList.count
     }
@@ -116,7 +131,6 @@ extension StopwatchViewController: UITableViewDataSource, UITableViewDelegate {
 extension StopwatchViewController: StopwatchViewModelDelegate {
     
     //MARK: - StopwatchViewModelDelegate
-    
     func didUpdateTimer(mainTimeString: String?, lapTimeString: String?) {
         timeLabel.text = mainTimeString
         
@@ -131,16 +145,7 @@ extension StopwatchViewController: StopwatchViewModelDelegate {
     }
     
     func didReset(state: StopwatchState, mainTimeString: String?) {
-        changeButtonState(state)
         timeLabel.text = mainTimeString
         tableView.reloadData()
-    }
-    
-    func didPause(state: StopwatchState) {
-        changeButtonState(state)
-    }
-    
-    func didRun(state: StopwatchState) {
-        changeButtonState(state)
     }
 }
