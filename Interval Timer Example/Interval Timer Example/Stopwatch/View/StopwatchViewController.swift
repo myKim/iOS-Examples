@@ -40,7 +40,7 @@ class StopwatchViewController: UIViewController {
     
     //MARK: - onClick Event
     private func onClickLapResetButton(_ sender: UIButton) {
-        switch viewModel.stopwatchState.value {
+        switch viewModel.stopwatch.stopwatchState {
         case .stopped: // 비활성화 상태로 누를 수 없음
             break
         case .running: // 랩타임을 기록한다.
@@ -51,7 +51,7 @@ class StopwatchViewController: UIViewController {
     }
     
     private func onClickStartStopButton(_ sender: UIButton) {
-        switch viewModel.stopwatchState.value {
+        switch viewModel.stopwatch.stopwatchState {
         case .stopped: // 시작한다. -> running
             viewModel.insertLap()
             viewModel.run()
@@ -74,8 +74,15 @@ class StopwatchViewController: UIViewController {
             .disposed(by: disposeBag)
         
         // for Stopwatch state change
-        viewModel.stopwatchState
-            .subscribe(onNext: { [weak self] stopwatchState in self?.updateButtonState(stopwatchState) })
+        viewModel.stopwatch.rx.stopwatchState
+            .subscribe(onNext: { [weak self] stopwatchState in
+            self?.updateButtonState(stopwatchState) })
+            .disposed(by: disposeBag)
+        
+        //
+        viewModel.stopwatchTime.rx.stopwatchTime
+            .subscribe(onNext: { [weak self] stopwatchTime in
+                self?.didUpdateTimer(mainTimeString: stopwatchTime.description, lapTimeString: stopwatchTime.description) })
             .disposed(by: disposeBag)
     }
     
@@ -122,7 +129,7 @@ extension StopwatchViewController: UITableViewDataSource, UITableViewDelegate {
         
         cell.detailTextLabel?.font = UIFont.monospacedDigitSystemFont(ofSize: cell.detailTextLabel?.font.pointSize ?? 17, weight: .regular)
         cell.textLabel?.text = "랩 \(viewModel.lapList.count - indexPath.row)"
-        cell.detailTextLabel?.text = viewModel.lapList[indexPath.row].timeString;
+        cell.detailTextLabel?.text = viewModel.lapList[indexPath.row].description;
         
         return cell
     }

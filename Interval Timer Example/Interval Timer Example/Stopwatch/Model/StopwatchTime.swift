@@ -10,15 +10,13 @@ import Foundation
 
 struct StopwatchTime {
     var time: UInt
-    var timeString: String? {
-        get {
-            return StopwatchTime.stringFromTime(self.time)
-        }
-    }
+    var test: Int
+    
+    static let null: StopwatchTime = StopwatchTime(time: 0, test: 0)
 }
 
 extension StopwatchTime {
-    private static func stringFromTime(_ time: UInt) -> String? {
+    private static func stringFromTime(_ time: UInt) -> String {
         var result = "00:00.00"
         var tempTime = time
        
@@ -42,4 +40,12 @@ extension StopwatchTime {
         }
         return result
     }
+}
+
+func ==(lhs: StopwatchTime, rhs: StopwatchTime) -> Bool {
+    return lhs.time == rhs.time
+}
+
+extension StopwatchTime: CustomStringConvertible {
+    var description: String { return StopwatchTime.stringFromTime(time) }
 }
