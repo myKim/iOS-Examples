@@ -17,6 +17,8 @@
 		B97089F523C954B200F15407 /* Auth.m in Sources */ = {isa = PBXBuildFile; fileRef = B97089F423C954B200F15407 /* Auth.m */; };
 		B97089F823C954D900F15407 /* AuthManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B97089F723C954D900F15407 /* AuthManager.m */; };
 		B9708A0523C9856000F15407 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = B9708A0423C9856000F15407 /* Utils.m */; };
+		B9708A0823C9F98100F15407 /* MYSafariViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9708A0723C9F98100F15407 /* MYSafariViewController.m */; };
+		B9A3F70123CAB6F10093FBE8 /* MYApplicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B9A3F70023CAB6F10093FBE8 /* MYApplicationDelegate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,12 @@
 		B9708A0223C96CB000F15407 /* AuthCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AuthCommon.h; sourceTree = "<group>"; };
 		B9708A0323C9856000F15407 /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		B9708A0423C9856000F15407 /* Utils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		B9708A0623C9F98100F15407 /* MYSafariViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MYSafariViewController.h; sourceTree = "<group>"; };
+		B9708A0723C9F98100F15407 /* MYSafariViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MYSafariViewController.m; sourceTree = "<group>"; };
+		B9A3F6FF23CAB6F10093FBE8 /* MYApplicationDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MYApplicationDelegate.h; sourceTree = "<group>"; };
+		B9A3F70023CAB6F10093FBE8 /* MYApplicationDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MYApplicationDelegate.m; sourceTree = "<group>"; };
+		B9A3F70223CABB3F0093FBE8 /* BaseServices.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseServices.h; sourceTree = "<group>"; };
+		B9A3F70523CABF710093FBE8 /* ApplicationObserving.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApplicationObserving.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +80,7 @@
 		B97089D823C9547600F15407 /* AuthTest */ = {
 			isa = PBXGroup;
 			children = (
+				B9A3F6FE23CAB6770093FBE8 /* BaseServices */,
 				B97089F223C9548300F15407 /* AuthServices */,
 				B97089D923C9547600F15407 /* AppDelegate.h */,
 				B97089DA23C9547600F15407 /* AppDelegate.m */,
@@ -99,8 +108,21 @@
 				B97089F723C954D900F15407 /* AuthManager.m */,
 				B9708A0323C9856000F15407 /* Utils.h */,
 				B9708A0423C9856000F15407 /* Utils.m */,
+				B9708A0623C9F98100F15407 /* MYSafariViewController.h */,
+				B9708A0723C9F98100F15407 /* MYSafariViewController.m */,
 			);
 			path = AuthServices;
+			sourceTree = "<group>";
+		};
+		B9A3F6FE23CAB6770093FBE8 /* BaseServices */ = {
+			isa = PBXGroup;
+			children = (
+				B9A3F70223CABB3F0093FBE8 /* BaseServices.h */,
+				B9A3F6FF23CAB6F10093FBE8 /* MYApplicationDelegate.h */,
+				B9A3F70023CAB6F10093FBE8 /* MYApplicationDelegate.m */,
+				B9A3F70523CABF710093FBE8 /* ApplicationObserving.h */,
+			);
+			path = BaseServices;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,8 +199,10 @@
 				B97089F823C954D900F15407 /* AuthManager.m in Sources */,
 				B97089E123C9547600F15407 /* ViewController.m in Sources */,
 				B97089DB23C9547600F15407 /* AppDelegate.m in Sources */,
+				B9A3F70123CAB6F10093FBE8 /* MYApplicationDelegate.m in Sources */,
 				B97089EC23C9547700F15407 /* main.m in Sources */,
 				B9708A0523C9856000F15407 /* Utils.m in Sources */,
+				B9708A0823C9F98100F15407 /* MYSafariViewController.m in Sources */,
 				B97089DE23C9547600F15407 /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

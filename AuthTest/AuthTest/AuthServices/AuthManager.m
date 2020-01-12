@@ -7,8 +7,18 @@
 //
 
 #import "AuthManager.h"
+#import "MYSafariViewController.h"
+#import "ApplicationObserving.h"
+#import "BaseServices.h"
 
 static NSString *const appScheme = @"myung120scheme";
+
+@interface AuthManager() <MYSafariViewControllerDelegate, ApplicationObserving>
+
+@property (nonatomic, strong, nullable) CompletionHandler webLoginHandler;
+@property (nonatomic, strong, nullable) MYSafariViewController *safariViewController;
+
+@end
 
 @implementation AuthManager
 
@@ -107,28 +117,46 @@ static NSString *const appScheme = @"myung120scheme";
 
 - (void)requestLoginGoogleWithCompletionHandler:(CompletionHandler)completionHandler
 {
-    NSURL *URL = [NSURL URLWithString:@"https://google.com"];
-    [self openLoginWebURL:URL];
+//    NSString *string = @"http://34.84.171.142:9090/test/page-1?redirect_url=myung120scheme://auth/authntoken";
+//    NSString *string = @"http://34.84.171.132:9090/test/page-2?redirect_url=https://naver.com";
+    NSString *string = @"http://34.84.171.132:9090/test/page-1?redirect_url=myung120scheme://auth/authntoken";
+//    NSString *string = @"myung120scheme://auth/authntoken";
+    NSURL *URL = [NSURL URLWithString:string];
+    [self openLoginWebURL:URL completionHandler:completionHandler];
 }
 
 - (void)requestLoginFacebookWithCompletionHandler:(CompletionHandler)completionHandler
 {
     NSURL *URL = [NSURL URLWithString:@"https://facebook.com"];
-    [self openLoginWebURL:URL];
+    [self openLoginWebURL:URL completionHandler:completionHandler];
 }
 
 - (void)requestLoginGuestWithCompletionHandler:(CompletionHandler)completionHandler
 {
-    BOOL isRegisteredScheme = [Utils isRegisteredURLScheme:appScheme];
-    
     completionHandler(YES, @{@"authn_token":@"guest1234"}, nil);
 }
 
 #pragma mark - Open LoginWeb
 
 - (void)openLoginWebURL:(NSURL *)URL
+      completionHandler:(CompletionHandler)completionHandler
 {
-    [self openURL:URL];
+    BOOL isRegisteredScheme = [Utils isRegisteredURLScheme:appScheme];
+    if (!isRegisteredScheme) {
+        NSError *error = [NSError errorWithDomain:@"Not registered URLScheme" code:1000 userInfo:nil];
+        completionHandler(NO, nil, error);
+        return;
+    }
+    
+    self.webLoginHandler = [completionHandler copy];
+    [[MYApplicationDelegate sharedInstance] addObserver:self];
+    
+    Class SFSafariViewControllerClass = NSClassFromString(@"SFSafariViewController");
+    if (SFSafariViewControllerClass) {
+        [self openURLWithSafariViewController:URL fromViewController:nil];
+    } else {
+        [self openURL:URL];
+    }
 }
 
 #pragma mark - Internal Methods
@@ -137,13 +165,60 @@ static NSString *const appScheme = @"myung120scheme";
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         if (@available(iOS 10.0, *)) {
-            [[UIApplication sharedApplication] openURL:URL
-                                               options:@{}
-                                     completionHandler:nil];
+            [[UIApplication sharedApplication] openURL:URL options:@{} completionHandler:nil];
         } else {
             [[UIApplication sharedApplication] openURL:URL];
         }
     });
+}
+
+- (void)openURLWithSafariViewController:(NSURL *)URL
+                     fromViewController:(UIViewController *)fromViewController
+{
+    UIViewController *parentViewController = fromViewController ?: [Utils topMostViewController];
+    
+    self.safariViewController = [[MYSafariViewController alloc] initWithURL:URL];
+    self.safariViewController.delegate = self;
+    
+    [parentViewController presentViewController:self.safariViewController animated:YES completion:nil];
+}
+
+#pragma mark - ApplicationObserving
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation
+{
+    [self completeWebLoginAuthenticationWithURL:url];
+    return YES;
+}
+
+#pragma mark - Complete Authentication
+- (void)completeWebLoginAuthenticationWithURL:(NSURL *)url
+{
+    if (_safariViewController) {
+        [_safariViewController dismissViewControllerAnimated:YES completion:nil];
+    }
+    
+    if (!_webLoginHandler) {
+        return;
+    }
+    
+    CompletionHandler handler = self.webLoginHandler;
+    self.webLoginHandler = nil;
+    
+    NSString *token = url.parameterString;
+    if (!token) {
+        NSError *error = [NSError errorWithDomain:@"response token error"
+                                             code:1000
+                                         userInfo:nil];
+        handler(NO, nil, error);
+        return;
+    }
+    
+    NSDictionary *result = @{@"authn_token":token};
+    handler(YES, result, nil);
 }
 
 @end
