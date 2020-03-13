@@ -6,6 +6,10 @@
 //  Copyright © 2020 myungyu Kim. All rights reserved.
 //
 
+/**
+ * 참고 : Expandable and Collapsible Sections UITableView (Ep 3) https://www.youtube.com/watch?v=Q8k9E1gQ_qg
+ */
+
 #import "ViewController.h"
 #import "ExpandableSectionModel.h"
 
