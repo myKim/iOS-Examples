@@ -219,6 +219,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="editButton" destination="U4B-LJ-gCW" id="r9b-Tt-vIl"/>
+                        <outlet property="headerView" destination="2Jy-XH-Egn" id="fC0-H5-mzG"/>
                         <outlet property="rowsLabel" destination="DGc-3F-D1g" id="Qmr-GF-rnH"/>
                         <outlet property="sectionsLabel" destination="151-Xi-DiU" id="EGH-4M-zNC"/>
                         <outlet property="selectedRowLabel" destination="kax-Lv-0r1" id="tJK-bH-9ns"/>
