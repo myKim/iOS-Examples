@@ -48,11 +48,14 @@
     
     [sender setTitle:isExpanded ? @"Close" : @"Open" forState:UIControlStateNormal];
     
-    if (isExpanded) {
-        [_tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
-    } else {
-        [_tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
-    }
+//    if (isExpanded) {
+//        [_tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+//    } else {
+//        [_tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+//    }
+    
+    
+    [_tableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimation];
 }
 
 #pragma mark - Delegate
