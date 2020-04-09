@@ -15,9 +15,13 @@
 		B92CA6CC243711EB00A52794 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B92CA6CA243711EB00A52794 /* LaunchScreen.storyboard */; };
 		B92CA6CF243711EB00A52794 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B92CA6CE243711EB00A52794 /* main.m */; };
 		B92CA6DD2437637B00A52794 /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = B92CA6DC2437637B00A52794 /* UIView+AutoLayout.m */; };
+		B932FC6C2439B7C4002D87B4 /* CustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B932FC6B2439B7C4002D87B4 /* CustomButton.m */; };
 		B9332DA82438220E00EDFFFD /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B9332DA72438220E00EDFFFD /* HeaderView.m */; };
 		B9332DAB2438221F00EDFFFD /* ContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = B9332DAA2438221F00EDFFFD /* ContentView.m */; };
 		B9332DAE2438222900EDFFFD /* FooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = B9332DAD2438222900EDFFFD /* FooterView.m */; };
+		B9332DB12438513C00EDFFFD /* FirstView.m in Sources */ = {isa = PBXBuildFile; fileRef = B9332DB02438513C00EDFFFD /* FirstView.m */; };
+		B9332DB42438514500EDFFFD /* SecondView.m in Sources */ = {isa = PBXBuildFile; fileRef = B9332DB32438514500EDFFFD /* SecondView.m */; };
+		B9332DB72438515A00EDFFFD /* ThirdView.m in Sources */ = {isa = PBXBuildFile; fileRef = B9332DB62438515A00EDFFFD /* ThirdView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,12 +39,20 @@
 		B92CA6CE243711EB00A52794 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B92CA6DB2437637B00A52794 /* UIView+AutoLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoLayout.h"; sourceTree = "<group>"; };
 		B92CA6DC2437637B00A52794 /* UIView+AutoLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+AutoLayout.m"; sourceTree = "<group>"; };
+		B932FC6A2439B7C4002D87B4 /* CustomButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomButton.h; sourceTree = "<group>"; };
+		B932FC6B2439B7C4002D87B4 /* CustomButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomButton.m; sourceTree = "<group>"; };
 		B9332DA62438220E00EDFFFD /* HeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HeaderView.h; sourceTree = "<group>"; };
 		B9332DA72438220E00EDFFFD /* HeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HeaderView.m; sourceTree = "<group>"; };
 		B9332DA92438221F00EDFFFD /* ContentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContentView.h; sourceTree = "<group>"; };
 		B9332DAA2438221F00EDFFFD /* ContentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContentView.m; sourceTree = "<group>"; };
 		B9332DAC2438222900EDFFFD /* FooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FooterView.h; sourceTree = "<group>"; };
 		B9332DAD2438222900EDFFFD /* FooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FooterView.m; sourceTree = "<group>"; };
+		B9332DAF2438513C00EDFFFD /* FirstView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstView.h; sourceTree = "<group>"; };
+		B9332DB02438513C00EDFFFD /* FirstView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstView.m; sourceTree = "<group>"; };
+		B9332DB22438514500EDFFFD /* SecondView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondView.h; sourceTree = "<group>"; };
+		B9332DB32438514500EDFFFD /* SecondView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondView.m; sourceTree = "<group>"; };
+		B9332DB52438515A00EDFFFD /* ThirdView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThirdView.h; sourceTree = "<group>"; };
+		B9332DB62438515A00EDFFFD /* ThirdView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThirdView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +112,14 @@
 				B9332DAA2438221F00EDFFFD /* ContentView.m */,
 				B9332DAC2438222900EDFFFD /* FooterView.h */,
 				B9332DAD2438222900EDFFFD /* FooterView.m */,
+				B9332DAF2438513C00EDFFFD /* FirstView.h */,
+				B9332DB02438513C00EDFFFD /* FirstView.m */,
+				B9332DB22438514500EDFFFD /* SecondView.h */,
+				B9332DB32438514500EDFFFD /* SecondView.m */,
+				B9332DB52438515A00EDFFFD /* ThirdView.h */,
+				B9332DB62438515A00EDFFFD /* ThirdView.m */,
+				B932FC6A2439B7C4002D87B4 /* CustomButton.h */,
+				B932FC6B2439B7C4002D87B4 /* CustomButton.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -174,13 +194,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B932FC6C2439B7C4002D87B4 /* CustomButton.m in Sources */,
 				B9332DAB2438221F00EDFFFD /* ContentView.m in Sources */,
 				B9332DAE2438222900EDFFFD /* FooterView.m in Sources */,
 				B92CA6C4243711EA00A52794 /* ViewController.m in Sources */,
 				B9332DA82438220E00EDFFFD /* HeaderView.m in Sources */,
 				B92CA6BE243711EA00A52794 /* AppDelegate.m in Sources */,
+				B9332DB12438513C00EDFFFD /* FirstView.m in Sources */,
 				B92CA6CF243711EB00A52794 /* main.m in Sources */,
 				B92CA6DD2437637B00A52794 /* UIView+AutoLayout.m in Sources */,
+				B9332DB42438514500EDFFFD /* SecondView.m in Sources */,
+				B9332DB72438515A00EDFFFD /* ThirdView.m in Sources */,
 				B92CA6C1243711EA00A52794 /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

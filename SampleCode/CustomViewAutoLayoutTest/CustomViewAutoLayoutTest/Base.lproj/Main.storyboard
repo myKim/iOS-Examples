@@ -19,57 +19,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RtK-U2-M3n">
-                                        <rect key="frame" x="0.0" y="0.0" width="1242" height="818"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ler-fo-cnx" userLabel="First View">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First View" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Fd-ig-7pd">
-                                                        <rect key="frame" x="144" y="254.5" width="126" height="36"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <constraints>
-                                                    <constraint firstItem="9Fd-ig-7pd" firstAttribute="centerX" secondItem="ler-fo-cnx" secondAttribute="centerX" id="H07-yA-8Sc"/>
-                                                    <constraint firstItem="9Fd-ig-7pd" firstAttribute="centerY" secondItem="ler-fo-cnx" secondAttribute="centerY" multiplier="1:1.5" id="IFc-LK-Js1"/>
-                                                </constraints>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J5Q-xp-O0V" userLabel="Second View">
-                                                <rect key="frame" x="414" y="0.0" width="414" height="818"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Second View" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H8C-lP-Vic">
-                                                        <rect key="frame" x="122.5" y="254.5" width="169" height="36"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                                <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <constraints>
-                                                    <constraint firstItem="H8C-lP-Vic" firstAttribute="centerY" secondItem="J5Q-xp-O0V" secondAttribute="centerY" multiplier="1:1.5" id="IGb-Xx-kqf"/>
-                                                    <constraint firstItem="H8C-lP-Vic" firstAttribute="centerX" secondItem="J5Q-xp-O0V" secondAttribute="centerX" id="STZ-yZ-ioa"/>
-                                                </constraints>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vTM-Zg-je0" userLabel="Third View">
-                                                <rect key="frame" x="828" y="0.0" width="414" height="818"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Third View" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cea-WO-ZOr">
-                                                        <rect key="frame" x="138.5" y="254.5" width="137" height="36"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                                <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <constraints>
-                                                    <constraint firstItem="Cea-WO-ZOr" firstAttribute="centerX" secondItem="vTM-Zg-je0" secondAttribute="centerX" id="9RK-e3-eHu"/>
-                                                    <constraint firstItem="Cea-WO-ZOr" firstAttribute="centerY" secondItem="vTM-Zg-je0" secondAttribute="centerY" multiplier="1:1.5" id="ha2-dI-xYc"/>
-                                                </constraints>
-                                            </view>
-                                        </subviews>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -77,11 +27,8 @@
                                     <constraint firstItem="RtK-U2-M3n" firstAttribute="top" secondItem="fX7-mb-4ka" secondAttribute="top" id="4uA-f2-Hte"/>
                                     <constraint firstItem="RtK-U2-M3n" firstAttribute="bottom" secondItem="fX7-mb-4ka" secondAttribute="bottom" id="5ge-Pq-a7V"/>
                                     <constraint firstItem="RtK-U2-M3n" firstAttribute="leading" secondItem="fX7-mb-4ka" secondAttribute="leading" id="Gtz-kf-bky"/>
-                                    <constraint firstItem="ler-fo-cnx" firstAttribute="width" secondItem="OgN-Dw-BP7" secondAttribute="width" id="S5T-FK-tk4"/>
                                     <constraint firstItem="RtK-U2-M3n" firstAttribute="trailing" secondItem="fX7-mb-4ka" secondAttribute="trailing" id="fcJ-sx-8Qv"/>
-                                    <constraint firstItem="vTM-Zg-je0" firstAttribute="width" secondItem="OgN-Dw-BP7" secondAttribute="width" id="hsZ-Kt-1Lh"/>
                                     <constraint firstItem="RtK-U2-M3n" firstAttribute="width" secondItem="OgN-Dw-BP7" secondAttribute="width" priority="250" id="jnm-yH-oCM"/>
-                                    <constraint firstItem="J5Q-xp-O0V" firstAttribute="width" secondItem="OgN-Dw-BP7" secondAttribute="width" id="nw1-bY-3tF"/>
                                     <constraint firstItem="RtK-U2-M3n" firstAttribute="height" secondItem="OgN-Dw-BP7" secondAttribute="height" id="spp-dj-wYJ"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="fX7-mb-4ka"/>
@@ -115,6 +62,7 @@
                     <connections>
                         <outlet property="pageControl" destination="Tgj-RB-bnI" id="1m5-e6-BJ2"/>
                         <outlet property="scrollView" destination="8wN-RT-P4x" id="uJH-qL-nWq"/>
+                        <outlet property="viewContainer" destination="RtK-U2-M3n" id="ebN-Ly-FeF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

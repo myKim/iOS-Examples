@@ -7,17 +7,97 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "EAFD59CC-E2C0-4F6A-8617-99AF3448A9E7"
+            uuid = "0A22D123-3C95-426D-B834-47D5584331F7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CustomViewAutoLayoutTest/View/CustomButton.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "-initialize"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "0A22D123-3C95-426D-B834-47D5584331F7 - aaa7eaad40995ad8"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[CustomButton initialize]"
+                  moduleName = "CustomViewAutoLayoutTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/myung/workspace/ios/iOS-Examples/SampleCode/CustomViewAutoLayoutTest/CustomViewAutoLayoutTest/View/CustomButton.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "46"
+                  endingLineNumber = "46"
+                  offsetFromSymbolStart = "752">
+               </Location>
+               <Location
+                  uuid = "0A22D123-3C95-426D-B834-47D5584331F7 - aaa7eaad40995ad8"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[CustomButton initialize]"
+                  moduleName = "CustomViewAutoLayoutTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/myung/workspace/ios/iOS-Examples/SampleCode/CustomViewAutoLayoutTest/CustomViewAutoLayoutTest/View/CustomButton.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "46"
+                  endingLineNumber = "46"
+                  offsetFromSymbolStart = "780">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5E88C71C-596A-4490-BBC3-2ED0A11E4050"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CustomViewAutoLayoutTest/ViewController.m"
+            filePath = "CustomViewAutoLayoutTest/View/CustomButton.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
-            landmarkName = "-scrollViewDidEndDecelerating:"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "-initialize"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "5E88C71C-596A-4490-BBC3-2ED0A11E4050 - aaa7eaad40995ad8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[CustomButton initialize]"
+                  moduleName = "CustomViewAutoLayoutTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/myung/workspace/ios/iOS-Examples/SampleCode/CustomViewAutoLayoutTest/CustomViewAutoLayoutTest/View/CustomButton.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "1148">
+               </Location>
+               <Location
+                  uuid = "5E88C71C-596A-4490-BBC3-2ED0A11E4050 - aaa7eaad40995ad8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[CustomButton initialize]"
+                  moduleName = "CustomViewAutoLayoutTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/myung/workspace/ios/iOS-Examples/SampleCode/CustomViewAutoLayoutTest/CustomViewAutoLayoutTest/View/CustomButton.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "1176">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

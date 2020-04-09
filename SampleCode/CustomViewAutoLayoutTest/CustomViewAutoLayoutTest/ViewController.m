@@ -8,10 +8,14 @@
 
 #import "ViewController.h"
 #import "UIView+AutoLayout.h"
+#import "FirstView.h"
+#import "SecondView.h"
+#import "ThirdView.h"
 
 @interface ViewController () <UIScrollViewDelegate>
 @property (strong, nonatomic) IBOutlet UIPageControl *pageControl;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (strong, nonatomic) IBOutlet UIStackView *viewContainer;
 @end
 
 @implementation ViewController
@@ -21,6 +25,31 @@
     
     _scrollView.delegate = self;
     _pageControl.userInteractionEnabled = NO;
+    
+    CGSize size = _scrollView.frame.size;
+    CGRect frame = CGRectMake(0, 0, size.width, size.height);
+    
+    FirstView *firstView = [[FirstView alloc] initWithFrame:frame];
+    SecondView *secondView = [[SecondView alloc] initWithFrame:frame];
+    ThirdView *thirdView = [[ThirdView alloc] initWithFrame:frame];
+    
+    firstView.translatesAutoresizingMaskIntoConstraints = NO;
+    secondView.translatesAutoresizingMaskIntoConstraints = NO;
+    thirdView.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    [firstView.widthAnchor constraintEqualToConstant:size.width].active = YES;
+    [secondView.widthAnchor constraintEqualToConstant:size.width].active = YES;
+    [thirdView.widthAnchor constraintEqualToConstant:size.width].active = YES;
+    
+    [_viewContainer addArrangedSubview:firstView];
+    [_viewContainer addArrangedSubview:secondView];
+    [_viewContainer addArrangedSubview:thirdView];
+    
+//    self.navigationController.interactivePopGestureRecognizer.delaysTouchesBegan = NO;
+//    for (UIGestureRecognizer *recognizer in self.window.gestureRecognizers) {
+//        recognizer.delaysTouchesBegan = NO;
+//    }
+    self.scrollView.delaysContentTouches = NO;
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
